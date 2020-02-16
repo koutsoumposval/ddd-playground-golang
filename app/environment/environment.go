@@ -4,7 +4,8 @@ import (
 	"os"
 )
 
-func getEnvVar(name, def string) string {
+// GetEnvVar retrieves ENV_VAR value or default
+func GetEnvVar(name string, def string) string {
 	env := os.Getenv(name)
 
 	if len(env) != 0 {
