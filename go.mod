@@ -1,4 +1,4 @@
-module github.com/koutsoumposval/polyglot-ddd-product
+module github.com/koutsoumposval/ddd-playground-golang
 
 go 1.13
 

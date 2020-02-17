@@ -1,9 +1,9 @@
 package application
 
 import (
-	"github.com/koutsoumposval/polyglot-ddd-product/domain/entity"
-	"github.com/koutsoumposval/polyglot-ddd-product/domain/repository"
-	"github.com/koutsoumposval/polyglot-ddd-product/domain/value"
+	"github.com/koutsoumposval/ddd-playground-golang/domain/entity"
+	"github.com/koutsoumposval/ddd-playground-golang/domain/repository"
+	"github.com/koutsoumposval/ddd-playground-golang/domain/value"
 )
 
 // ProductAppSvc is the entrypoint for Product use cases

@@ -3,7 +3,7 @@ package entity
 import (
 	"fmt"
 
-	"github.com/koutsoumposval/polyglot-ddd-product/domain/value"
+	"github.com/koutsoumposval/ddd-playground-golang/domain/value"
 )
 
 // Product represent entity of a product

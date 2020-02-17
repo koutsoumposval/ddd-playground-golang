@@ -1,8 +1,8 @@
 package repository
 
 import (
-	"github.com/koutsoumposval/polyglot-ddd-product/domain/entity"
-	"github.com/koutsoumposval/polyglot-ddd-product/domain/value"
+	"github.com/koutsoumposval/ddd-playground-golang/domain/entity"
+	"github.com/koutsoumposval/ddd-playground-golang/domain/value"
 )
 
 // ProductRepository represent a repository of product

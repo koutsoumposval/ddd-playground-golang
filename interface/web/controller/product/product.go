@@ -7,8 +7,8 @@ import (
 
 	"github.com/gin-gonic/gin"
 
-	"github.com/koutsoumposval/polyglot-ddd-product/application"
-	"github.com/koutsoumposval/polyglot-ddd-product/domain/value"
+	"github.com/koutsoumposval/ddd-playground-golang/application"
+	"github.com/koutsoumposval/ddd-playground-golang/domain/value"
 )
 
 // GetProduct gets a product

@@ -1,6 +1,6 @@
 package main
 
-import "github.com/koutsoumposval/polyglot-ddd-product/interface/web/routes"
+import "github.com/koutsoumposval/ddd-playground-golang/interface/web/routes"
 
 func main() {
 	routes.Router().Run()

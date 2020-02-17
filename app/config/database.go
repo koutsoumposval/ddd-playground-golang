@@ -4,7 +4,7 @@ import (
 	"database/sql"
 	"fmt"
 
-	"github.com/koutsoumposval/polyglot-ddd-product/app/environment"
+	"github.com/koutsoumposval/ddd-playground-golang/app/environment"
 )
 
 // DatabaseConnection is used for database connection.

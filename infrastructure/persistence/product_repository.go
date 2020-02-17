@@ -5,9 +5,9 @@ import (
 
 	_ "github.com/go-sql-driver/mysql" //comment
 
-	"github.com/koutsoumposval/polyglot-ddd-product/domain/entity"
-	"github.com/koutsoumposval/polyglot-ddd-product/domain/repository"
-	"github.com/koutsoumposval/polyglot-ddd-product/domain/value"
+	"github.com/koutsoumposval/ddd-playground-golang/domain/entity"
+	"github.com/koutsoumposval/ddd-playground-golang/domain/repository"
+	"github.com/koutsoumposval/ddd-playground-golang/domain/value"
 )
 
 // productRepository implements repository.ProductRepository

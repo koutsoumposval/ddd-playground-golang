@@ -4,7 +4,7 @@ import (
 	"C"
 
 	"github.com/gin-gonic/gin"
-	"github.com/koutsoumposval/polyglot-ddd-product/interface/web/controller/product"
+	"github.com/koutsoumposval/ddd-playground-golang/interface/web/controller/product"
 )
 
 // Router returns a http router with endpoints set
