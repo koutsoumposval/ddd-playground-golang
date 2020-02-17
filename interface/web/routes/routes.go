@@ -10,11 +10,11 @@ import (
 // Router returns a http router with endpoints set
 func Router() *gin.Engine {
 
-	router := gin.Default()
+	r := gin.Default()
 
-	router.GET("/product/:id", product.GetProduct)
-	router.GET("/product", product.GetProducts)
-	router.POST("/product", product.AddProduct)
+	r.GET("/product/:id", product.GetProduct)
+	r.GET("/product", product.GetProducts)
+	r.POST("/product", product.AddProduct)
 
-	return router
+	return r
 }

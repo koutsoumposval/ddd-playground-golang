@@ -14,7 +14,7 @@ func DatabaseConnection() (*sql.DB, error) {
 	host := environment.GetEnvVar("DB_HOST", "localhost")
 	port := environment.GetEnvVar("DB_PORT", "3306")
 
-	dsn := fmt.Sprintf("%s:%s@tcp(%s:%s)/polyglot_ddd_product?parseTime=true", user, password, host, port)
+	dsn := fmt.Sprintf("%s:%s@tcp(%s:%s)/ddd_playground_golang?parseTime=true", user, password, host, port)
 
 	db, err := sql.Open("mysql", dsn)
 

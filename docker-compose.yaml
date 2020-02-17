@@ -1,0 +1,39 @@
+version: '3'
+
+services:
+  
+  mysql:
+    build:
+      context: docker/mysql
+    ports:
+      - "33061:3306"
+    networks:
+      - external_network
+    volumes:
+      - db-data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+    restart: on-failure
+
+  product:
+    build:
+      context: docker/go
+    ports:
+      - "8081:8080"
+    volumes:
+      - .:/var/www/go
+    networks:
+      - external_network
+    restart: always
+
+volumes:
+  db-data:
+    driver: local
+
+networks:
+  external_network:
+    external:
+      name: external_network
