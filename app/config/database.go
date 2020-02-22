@@ -9,10 +9,10 @@ import (
 
 // DatabaseConnection is used for database connection.
 func DatabaseConnection() (*sql.DB, error) {
-	user := environment.GetEnvVar("DB_USER", "root")
-	password := environment.GetEnvVar("DB_PASSWORD", "")
+	user := environment.GetEnvVar("DB_USER", "user")
+	password := environment.GetEnvVar("DB_PASSWORD", "p@ssw0rd")
 	host := environment.GetEnvVar("DB_HOST", "localhost")
-	port := environment.GetEnvVar("DB_PORT", "3306")
+	port := environment.GetEnvVar("DB_PORT", "33061")
 
 	dsn := fmt.Sprintf("%s:%s@tcp(%s:%s)/ddd_playground_golang?parseTime=true", user, password, host, port)
 
