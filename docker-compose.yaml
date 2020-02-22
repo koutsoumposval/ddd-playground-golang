@@ -19,6 +19,8 @@ services:
   product:
     build:
       context: docker/go
+    env_file:
+      - ".env"
     ports:
       - "8081:8080"
     volumes:

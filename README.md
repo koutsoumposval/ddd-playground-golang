@@ -7,26 +7,56 @@ The project consists of many dockerised services written in different languages 
 A gateway component written in Ballerina lang will expose transformed and combined data of those APIs.
 
 ## Content
-The application is a product service exposing an basic API. 
+
+The application is a product service exposing an basic API.
 It is written in Go.
 
 ### Get all products
-```GET   /product```
+
+```json
+curl --location --request GET 'http://localhost:8081/product'
+
+[
+   {
+      "id":1,
+      "name":"Red Chair",
+      "category_id":1
+   },
+   {
+      "id":2,
+      "name":"Blue Table",
+      "category_id":2
+   },
+   {
+      "id":3,
+      "name":"Yellow Carpet",
+      "category_id":3
+   }
+]
+```
 
 ### Get specific product
-```GET   /product/{id}```
+
+```json
+curl --location --request GET 'http://localhost:8081/product/2'
+
+{
+   "id":2,
+   "name":"Blue Table",
+   "category_id":2
+}
+```
 
 ### Create a new product
-```POST  /product```
+
 ```json
-{
-    "name": "Product Name",
-    "categoryId": 1
-}
+curl --location --request POST 'http://localhost:8081/product' -d '{"name":"Yellow Chair", "category_id":1}'
 ```
 
 ## Initialize app
 
-A Makefile is here to help.
+Run `make init` to initialize your app.
 
-Run `make` on your terminal and see what's available. 
+## Import dummy data
+
+Run `make install-fixtures` to import dummy data.

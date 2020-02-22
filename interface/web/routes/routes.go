@@ -7,8 +7,6 @@ import (
 
 // Router returns a http router with endpoints set
 func Router(pController product.ProductController) *gin.Engine {
-
-
 	r := gin.Default()
 
 	r.GET("/product/:id", pController.GetProduct)

@@ -8,7 +8,6 @@ import (
 	"github.com/gin-gonic/gin"
 
 	"github.com/koutsoumposval/ddd-playground-golang/application"
-	"github.com/koutsoumposval/ddd-playground-golang/domain/value"
 )
 
 // ProductController handles requests and invokes the specific use case
@@ -27,10 +26,7 @@ func (pc ProductController) GetProduct(c *gin.Context) {
 		return
 	}
 
-	pID := new(value.ProductID)
-	pID.SetID(id)
-
-	p, err := pc.ProductAppSvc.GetProduct(*pID)
+	p, err := pc.ProductAppSvc.GetProduct(id)
 
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, err)
@@ -62,7 +58,7 @@ func (pc ProductController) AddProduct(c *gin.Context) {
 
 	data := struct {
 		Name       string `json:"name"`
-		CategoryID int64  `json:"categoryId"`
+		CategoryID int64  `json:"category_id"`
 	}{}
 
 	err := json.Unmarshal(rawData, &data)
@@ -73,10 +69,7 @@ func (pc ProductController) AddProduct(c *gin.Context) {
 		return
 	}
 
-	cID := new(value.CategoryID)
-	cID.SetID(data.CategoryID)
-
-	err = pc.ProductAppSvc.CreateProduct(data.Name, *cID)
+	err = pc.ProductAppSvc.CreateProduct(data.Name, data.CategoryID)
 
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, err)

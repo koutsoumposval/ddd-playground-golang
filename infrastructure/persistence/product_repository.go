@@ -6,7 +6,6 @@ import (
 	_ "github.com/go-sql-driver/mysql" //comment
 
 	"github.com/koutsoumposval/ddd-playground-golang/domain/entity"
-	"github.com/koutsoumposval/ddd-playground-golang/domain/value"
 )
 
 // ProductRepository implements IProductRepository
@@ -14,10 +13,10 @@ type ProductRepository struct {
 	Connection *sql.DB
 }
 
-// Get returns entity.Product
-func (r *ProductRepository) Get(id value.ProductID) (*entity.Product, error) {
+// Get returns a specific Product
+func (r *ProductRepository) Get(id int64) (*entity.Product, error) {
 
-	row, err := r.queryRow("select id, name, category_id from product where id=?", id.ID.ID())
+	row, err := r.queryRow("select id, name, category_id from product where id=?", id)
 
 	if err != nil {
 		return nil, err
@@ -34,7 +33,7 @@ func (r *ProductRepository) Get(id value.ProductID) (*entity.Product, error) {
 	return p, nil
 }
 
-// GetAll returns list of entity.Product
+// GetAll returns a list of all Products
 func (r *ProductRepository) GetAll() ([]*entity.Product, error) {
 
 	rows, err := r.query("select id, name , category_id from product")
@@ -61,7 +60,7 @@ func (r *ProductRepository) GetAll() ([]*entity.Product, error) {
 	return ps, nil
 }
 
-// Save saves domain.Product to storage
+// Save saves Product
 func (r *ProductRepository) Save(p *entity.Product) error {
 
 	stmt, err := r.Connection.Prepare("insert into product (name, category_id) values (?, ?)")
