@@ -5,9 +5,9 @@ import (
 	"github.com/koutsoumposval/ddd-playground-golang/domain/value"
 )
 
-// ProductRepository represent a repository of product
-type ProductRepository interface {
+// IProductRepository contract for product repository
+type IProductRepository interface {
 	Get(id value.ProductID) (*entity.Product, error)
 	GetAll() ([]*entity.Product, error)
-	Save(product *entity.Product) error
+	Save(p *entity.Product) error
 }

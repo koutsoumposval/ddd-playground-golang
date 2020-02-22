@@ -6,38 +6,43 @@ import (
 	"github.com/koutsoumposval/ddd-playground-golang/domain/value"
 )
 
-// ProductAppSvc is the entrypoint for Product use cases
-type ProductAppSvc struct {
-	Repository repository.ProductRepository
+// IProductAppSvc is entry point for product use cases
+type IProductAppSvc interface {
+	GetProduct(id value.ProductID) (*entity.Product, error)
+	GetProducts() ([]*entity.Product, error)
+	CreateProduct(name string, CategoryID value.CategoryID) error
 }
 
-var productAppSvc ProductAppSvc
+// ProductAppSvc is implementation of IProductAppSvc
+type ProductAppSvc struct {
+	Repository repository.IProductRepository
+}
 
-// GetProductAppSvc returns ProductAppSvc
-func GetProductAppSvc() ProductAppSvc {
-	return productAppSvc
+// GetProductAppSvc returns initialized ProductAppSvc
+func GetProductAppSvc(repository repository.IProductRepository) IProductAppSvc {
+	return &ProductAppSvc{Repository: repository}
 }
 
 // GetProduct returns product
-func (i ProductAppSvc) GetProduct(id value.ProductID) (*entity.Product, error) {
+func (p ProductAppSvc) GetProduct(id value.ProductID) (*entity.Product, error) {
 
-	return i.Repository.Get(id)
+	return p.Repository.Get(id)
 }
 
 // GetProducts returns product list
-func (i ProductAppSvc) GetProducts() ([]*entity.Product, error) {
+func (p ProductAppSvc) GetProducts() ([]*entity.Product, error) {
 
-	return i.Repository.GetAll()
+	return p.Repository.GetAll()
 }
 
 // CreateProduct creates a new product
-func (i ProductAppSvc) CreateProduct(name string, CategoryID value.CategoryID) error {
+func (p ProductAppSvc) CreateProduct(name string, CategoryID value.CategoryID) error {
 
-	p, err := entity.CreateProduct(name, CategoryID)
+	pr, err := entity.CreateProduct(name, CategoryID)
 
 	if err != nil {
 		return err
 	}
 
-	return i.Repository.Save(p)
+	return p.Repository.Save(pr)
 }

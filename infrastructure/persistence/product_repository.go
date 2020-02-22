@@ -6,22 +6,16 @@ import (
 	_ "github.com/go-sql-driver/mysql" //comment
 
 	"github.com/koutsoumposval/ddd-playground-golang/domain/entity"
-	"github.com/koutsoumposval/ddd-playground-golang/domain/repository"
 	"github.com/koutsoumposval/ddd-playground-golang/domain/value"
 )
 
-// productRepository implements repository.ProductRepository
-type productRepository struct {
-	conn *sql.DB
-}
-
-// ProductRepository returns initialized ProductRepositoryImp
-func ProductRepository(conn *sql.DB) repository.ProductRepository {
-	return &productRepository{conn: conn}
+// ProductRepository implements IProductRepository
+type ProductRepository struct {
+	Connection *sql.DB
 }
 
 // Get returns entity.Product
-func (r *productRepository) Get(id value.ProductID) (*entity.Product, error) {
+func (r *ProductRepository) Get(id value.ProductID) (*entity.Product, error) {
 
 	row, err := r.queryRow("select id, name, category_id from product where id=?", id.ID.ID())
 
@@ -41,7 +35,7 @@ func (r *productRepository) Get(id value.ProductID) (*entity.Product, error) {
 }
 
 // GetAll returns list of entity.Product
-func (r *productRepository) GetAll() ([]*entity.Product, error) {
+func (r *ProductRepository) GetAll() ([]*entity.Product, error) {
 
 	rows, err := r.query("select id, name , category_id from product")
 
@@ -68,9 +62,9 @@ func (r *productRepository) GetAll() ([]*entity.Product, error) {
 }
 
 // Save saves domain.Product to storage
-func (r *productRepository) Save(p *entity.Product) error {
+func (r *ProductRepository) Save(p *entity.Product) error {
 
-	stmt, err := r.conn.Prepare("insert into product (name, category_id) values (?, ?)")
+	stmt, err := r.Connection.Prepare("insert into product (name, category_id) values (?, ?)")
 
 	if err != nil {
 		return err
@@ -83,9 +77,9 @@ func (r *productRepository) Save(p *entity.Product) error {
 	return err
 }
 
-func (r *productRepository) query(q string, args ...interface{}) (*sql.Rows, error) {
+func (r *ProductRepository) query(q string, args ...interface{}) (*sql.Rows, error) {
 
-	stmt, err := r.conn.Prepare(q)
+	stmt, err := r.Connection.Prepare(q)
 
 	if err != nil {
 		return nil, err
@@ -96,9 +90,9 @@ func (r *productRepository) query(q string, args ...interface{}) (*sql.Rows, err
 	return stmt.Query(args...)
 }
 
-func (r *productRepository) queryRow(q string, args ...interface{}) (*sql.Row, error) {
+func (r *ProductRepository) queryRow(q string, args ...interface{}) (*sql.Row, error) {
 
-	stmt, err := r.conn.Prepare(q)
+	stmt, err := r.Connection.Prepare(q)
 
 	if err != nil {
 		return nil, err

@@ -11,8 +11,13 @@ import (
 	"github.com/koutsoumposval/ddd-playground-golang/domain/value"
 )
 
+// ProductController handles requests and invokes the specific use case
+type ProductController struct {
+	ProductAppSvc application.IProductAppSvc
+}
+
 // GetProduct gets a product
-func GetProduct(c *gin.Context) {
+func (pc ProductController) GetProduct(c *gin.Context) {
 
 	id, err := strconv.ParseInt(c.Param("id"), 10, 64)
 
@@ -25,7 +30,7 @@ func GetProduct(c *gin.Context) {
 	pID := new(value.ProductID)
 	pID.SetID(id)
 
-	p, err := application.GetProductAppSvc().GetProduct(*pID)
+	p, err := pc.ProductAppSvc.GetProduct(*pID)
 
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, err)
@@ -37,9 +42,9 @@ func GetProduct(c *gin.Context) {
 }
 
 // GetProducts gets all products
-func GetProducts(c *gin.Context) {
+func (pc ProductController) GetProducts(c *gin.Context) {
 
-	ps, err := application.GetProductAppSvc().GetProducts()
+	ps, err := pc.ProductAppSvc.GetProducts()
 
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, err)
@@ -51,7 +56,7 @@ func GetProducts(c *gin.Context) {
 }
 
 // AddProduct adds a product
-func AddProduct(c *gin.Context) {
+func (pc ProductController) AddProduct(c *gin.Context) {
 
 	rawData, _ := c.GetRawData()
 
@@ -71,7 +76,7 @@ func AddProduct(c *gin.Context) {
 	cID := new(value.CategoryID)
 	cID.SetID(data.CategoryID)
 
-	err = application.GetProductAppSvc().CreateProduct(data.Name, *cID)
+	err = pc.ProductAppSvc.CreateProduct(data.Name, *cID)
 
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, err)
