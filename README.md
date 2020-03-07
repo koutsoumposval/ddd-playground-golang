@@ -2,9 +2,9 @@
 
 This is part of the ddd-playground project.
 
-The project consists of many dockerised services written in different languages and exposing API Endpoints.
+The project consists of many dockerised services written in different languages and exposing APIs.
 
-A gateway component written in Ballerina lang will expose transformed and combined data of those APIs.
+An integrator component written in Ballerina lang will expose transformed and combined data of those APIs.
 
 ## Content
 
