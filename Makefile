@@ -8,6 +8,7 @@ DB_PASSWORD := $(shell cat .env | grep DB_PASSWORD | cut -d "=" -f2)
 init: ## Initialise application
 	docker network create external_network || true
 	docker-compose up -d
+	sleep 30
 	make install-fixtures
 
 .PHONY: install-fixtures
