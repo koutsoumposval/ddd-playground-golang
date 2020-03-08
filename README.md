@@ -60,3 +60,15 @@ Run `make init` to initialize your app.
 ## Import dummy data
 
 Run `make install-fixtures` to import dummy data.
+
+### Start
+
+```bash
+make start
+```
+
+### Stop
+
+```bash
+make stop
+```
