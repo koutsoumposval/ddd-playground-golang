@@ -6,8 +6,8 @@ import (
 	"github.com/koutsoumposval/ddd-playground-golang/app/config"
 	"github.com/koutsoumposval/ddd-playground-golang/application"
 	"github.com/koutsoumposval/ddd-playground-golang/infrastructure/persistence"
-	"github.com/koutsoumposval/ddd-playground-golang/interface/web/controller/product"
-	"github.com/koutsoumposval/ddd-playground-golang/interface/web/routes"
+	"github.com/koutsoumposval/ddd-playground-golang/interface/http/controller/product"
+	"github.com/koutsoumposval/ddd-playground-golang/interface/http/routes"
 )
 
 func main() {
